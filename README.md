@@ -52,6 +52,7 @@ lo siguiente que debemos hacer es seguir estos comandos para aplicar las migraci
 - `docker-compose exec app python manage.py migrate`
 
 para crear un super usuario en nuestro administrador debemos ejecutar el siguiente comando:
+
 `docker-compose exec app python manage.py createsuperuser`
 
 para poder hacer uso de nuestro backend debemos crear las tiendas en el admin y usuarios de las tiendas, luego debemos logearnos en nuestra aplicación de angular y podemos ver funcionando la aplicación conectada al backend.
