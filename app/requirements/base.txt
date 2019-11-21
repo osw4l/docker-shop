@@ -5,7 +5,7 @@ django-filter==1.1.0
 psycopg2==2.8.4
 psycopg2-binary==2.8.4
 gunicorn==19.7.1
-Pillow==5.1.0
+Pillow==6.2.0
 celery==4.1.1
 https://github.com/formatcom/django-celery-beat/zipball/v1.1.1#egg=django-celery-beat
 https://github.com/formatcom/django-celery-results/zipball/v1.1.0#egg=django-celery-results
