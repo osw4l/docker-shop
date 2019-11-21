@@ -1,0 +1,23 @@
+server {
+  client_max_body_size 50M;
+  listen 80;
+  server_name  shop.osw4l.com;
+
+  location /static {
+    alias /app/static/;
+  }
+
+  location /media {
+    alias /app/media/;
+  }
+
+  location / {
+    # app es el host que apunta el link de docker
+    # donde vive gunicorn
+    proxy_pass http://app:8002;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_redirect off;
+  }
+
+}

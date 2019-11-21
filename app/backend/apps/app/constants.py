@@ -1,0 +1,5 @@
+UNIDADES_INSUFICIENTES = 'No hay unidades suficientes'
+PRODUCTOS_AJENOS = 'Uno o mas productos no pertenece a esta tienda'
+PRODUCTOS_INEXISTENTE = 'Uno o mas productos no se encuentran registrados en nuestra base de datos'
+PRODUCTO_AJENO = 'Este producto no pertenecen a su tienda'
+PRODUCTO_INEXISTENTE = 'Este producto no existe'

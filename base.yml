@@ -1,0 +1,55 @@
+version: "2"
+services:
+  nginx:
+    build: ./nginx
+    volumes:
+      - ./app:/app
+
+  postgres:
+    image: postgres:10.1
+    env_file: .env
+
+  redis:
+    image: redis:5.0
+
+  app:
+    build: ./app
+    volumes:
+      - ./app:/app
+    env_file: .env
+    restart: on-failure
+    command: sh ./scripts/app.sh
+
+  worker:
+    build: ./app
+    volumes:
+      - ./app:/app
+    env_file: .env
+    restart: on-failure
+    command: celery -A $PROJECT_NAME worker -l info
+
+  beat:
+    build: ./app
+    volumes:
+      - ./app:/app
+    env_file: .env
+    restart: on-failure
+    command: celery -A $PROJECT_NAME beat -l info --pidfile=/home/app/celery.pid
+
+  websockets_worker:
+    build: ./app
+    volumes:
+      - ./app:/app
+    env_file: .env
+    restart: on-failure
+    command: python3 manage.py runworker --only-channels=http.* --only-channels=websocket.* -v2
+  
+  daphne:
+    build: ./app
+    command: daphne -b 0.0.0.0 -p 8001 $PROJECT_NAME.asgi:channel_layer
+    volumes:
+      - ./app:/app
+    env_file: .env
+    restart: on-failure
+
+ 
